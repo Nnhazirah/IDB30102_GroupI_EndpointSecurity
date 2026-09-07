@@ -11,7 +11,6 @@ This folder contains architectural diagrams and flowcharts for the ransomware de
 | system_flowchart.png | Step-by-step process flow |
 
 ## Architecture Diagram
-<img width="736" height="1104" alt="download" src="https://github.com/user-attachments/assets/b5a00a8d-6a61-4aa9-87a3-e210332d9f2f" />
 
 ## System Flowchart
 
