@@ -1,2 +1,1 @@
-# RansomwareDetection
-Research Project
+# **Ransomware Detection**
