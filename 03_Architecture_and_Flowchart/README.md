@@ -3,16 +3,16 @@
 ## Purpose
 This folder contains architectural diagrams and flowcharts for the ransomware detection system. These diagrams are consistent with Chapter 3 of the Research Proposal.
 
-## Files
+## [Files](File.md)
 
 | File | Description |
 |------|-------------|
 | architecture_diagram.png | System architecture showing all components |
 | system_flowchart.png | Step-by-step process flow |
 
-## [Architecture Diagram](Architecture_Diagram.md)
+## [Architecture_Diagram](Architecture_Diagram.md)
 
 ## [System_Flowchart](System_Flowchart.md)
 
-## Consistency
+## [Consistency](Consistency.md)
 These diagrams align with Chapter 3, Sections 3.4 and 3.5 of the Research Proposal.
