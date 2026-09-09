@@ -10,7 +10,7 @@ This folder contains architectural diagrams and flowcharts for the ransomware de
 | architecture_diagram.png | System architecture showing all components |
 | system_flowchart.png | Step-by-step process flow |
 
-## Architecture Diagram
+## [Architecture Diagram](Architecture_Diagram.md)
 
 ## [System_Flowchart](System_Flowchart.md)
 
