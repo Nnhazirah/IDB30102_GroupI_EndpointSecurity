@@ -4,7 +4,7 @@ This directory contains the academic bibliography, citations, and reference list
 
 ---
 
-## 📚 Primary Academic References (APA & IEEE Formats)
+## 📚 Primary Academic References
 
 1. **Abdelwahed, A., Medani, K., & Guirguis, M. (2023).**
    *Dynamic Behavioural Analysis of Ransomware via System API Interception.* IEEE Transactions on Information Forensics and Security, 18, 1420–1434. https://doi.org/10.1109/TIFS.2023.3259871
