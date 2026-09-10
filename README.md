@@ -1,150 +1,77 @@
-\# Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
+# Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
 
-
-
-\## 1. Research Overview
-
-
+## 1. Research Overview
 
 This research focuses on the behavioural detection of file-encrypting ransomware on Windows endpoints using machine learning. File-encrypting ransomware can perform malicious activities such as rapid file modification, file encryption, file renaming, extension changes, changes in file entropy, suspicious process activity and attempts to interfere with recovery mechanisms.
 
-
-
 The research investigates how behavioural characteristics such as file-system activity, file writing and renaming, entropy changes and process/API behaviour can be used as features for machine-learning-based ransomware detection.
 
+---
 
+## 2. Group Information
 
-\---
+**Group:** Group I – Endpoint Security
 
-
-
-\## 2. Group Information
-
-
-
-\*\*Group:\*\* Group I – Endpoint Security
-
-
-
-\### Group Members
-
-
+### Group Members
 
 | No. | Name | Student ID | Main Responsibility |
+|-----|------|------------|---------------------|
+| 1 | [NUR KHALISAH QISTINA BINTI MUHAMAD] | [52215124789] | Chapter 1, README.md |
+| 2 | [NURFILZAH ADIBAH BINTI ZAKARIA] | [52215124782] | Chapter 2, Literature Review |
+| 3 | [NIK NURHAZIRAH BINTI NIK HUSSAIN] | [52215226033] | Chapter 3A, Methodology and Architecture |
+| 4 | [NURIN IZZAH BINTI JUHARI] | [52215124817] | Chapter 3B, Data, Evaluation and References |
 
-|---|---|---|---|
+---
 
-| 1 | \[NUR KHALISAH QISTINA BINTI MUHAMAD] | \[52215124789] | Chapter 1, README.md |
+## 3. Assigned Research Area
 
-| 2 | \[NURFILZAH ADIBAH BINTI ZAKARIA] | \[52215124782] | Chapter 2, Literature Review |
+**Research Area:** Endpoint Security
 
-| 3 | \[NIK NURHAZIRAH BINTI NIK HUSSAIN] | \[52215226033] | Chapter 3A, Methodology and Architecture |
-
-| 4 | \[NURIN IZZAH BINTI JUHARI] | \[52215124817] | Chapter 3B, Data, Evaluation and References |
-
-
-
-\---
-
-
-
-\## 3. Assigned Research Area
-
-
-
-\*\*Research Area:\*\* Endpoint Security
-
-
-
-\*\*Research Topic:\*\* Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
-
-
+**Research Topic:** Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
 
 The research focuses on detecting ransomware-related behaviour on Windows endpoints by analysing multiple behavioural characteristics and applying machine learning for classification.
 
+---
 
-
-\---
-
-
-
-\## 4. Research Problem
-
-
+## 4. Research Problem
 
 The research addresses two main problems.
 
-
-
-\### Problem 1: Detection Limitations
-
-
+### Problem 1: Detection Limitations
 
 Ransomware that encrypts files can show different behaviours, including rapid file alteration, file renaming, entropy changes and suspicious process activity. However, relying on a single behavioural indicator may not accurately distinguish ransomware from legitimate activity. For example, legitimate compressed or encrypted files may also have high entropy, while ransomware can modify its behaviour to avoid detection. New and modified ransomware may also be difficult for traditional signature-based detection to identify.
 
-
-
 Therefore, multiple behavioural indicators need to be combined with machine learning to improve ransomware detection and classification.
 
-
-
-\### Problem 2: Limited Generalisation to Realistic Windows Endpoint Environments
-
-
+### Problem 2: Limited Generalisation to Realistic Windows Endpoint Environments
 
 Many machine-learning-based ransomware studies report high detection performance using controlled, synthetic or sandbox datasets. However, these environments may not fully represent realistic Windows endpoints containing legitimate applications, background processes and normal user activities.
 
-
-
 Detection performance may also differ when models trained on controlled datasets are applied to actual endpoint behaviour. Therefore, the proposed detection approach needs to be considered under more realistic Windows endpoint conditions and against different ransomware behaviours.
 
+---
 
-
-\---
-
-
-
-\## 5. Research Aim
-
-
+## 5. Research Aim
 
 To create and assess a machine-learning-based behavioural detection method for identifying file-encrypting ransomware on Windows endpoints while considering dataset quality, generalisation and realistic endpoint validation.
 
+---
 
+## 6. Research Objectives
 
-\---
-
-
-
-\## 6. Research Objectives
-
-
-
-\### RO1
-
-
+### RO1
 
 To identify and analyse behavioural characteristics associated with file-encrypting ransomware on Windows endpoints.
 
-
-
-\### RO2
-
-
+### RO2
 
 To develop a machine-learning-based method using selected behavioural characteristics to distinguish ransomware-related and legitimate endpoint activities.
 
-
-
-\### RO3
-
-
+### RO3
 
 To assess the effectiveness of the proposed behavioural detection method using suitable classification and detection metrics.
 
-
-
-\---
+---
 
 
 
@@ -158,81 +85,57 @@ The proposed solution is a behaviour-based ransomware detection approach for Win
 
 The approach will analyse multiple behavioural characteristics instead of relying on a single indicator. The selected characteristics may include:
 
+- File-system activity
 
+- File-writing activity
 
-\- File-system activity
+- File renaming and extension changes
 
-\- File-writing activity
+- File entropy changes
 
-\- File renaming and extension changes
+- Process behaviour
 
-\- File entropy changes
-
-\- Process behaviour
-
-\- API behaviour
-
-
+- API behaviour
 
 These behavioural features will be used in a supervised machine-learning approach to distinguish legitimate endpoint activities from ransomware-related activities.
 
-
-
 The proposed approach will consider machine-learning algorithms such as:
 
+- Random Forest
 
+- XGBoost
 
-\- Random Forest
-
-\- XGBoost
-
-\- Support Vector Machine (SVM)
-
-
+- Support Vector Machine (SVM)
 
 The final model selection will be based on the findings from the literature review, dataset suitability and evaluation results.
 
+---
 
-
-\---
-
-
-
-\## 8. Research Methodology
-
-
+## 8. Research Methodology
 
 The research will follow a systematic research process consisting of:
 
+1. Literature review and identification of research gaps
 
+2. Identification of ransomware behavioural characteristics
 
-1\. Literature review and identification of research gaps
+3. Dataset selection and preparation
 
-2\. Identification of ransomware behavioural characteristics
+4. Behavioural feature selection and preprocessing
 
-3\. Dataset selection and preparation
+5. Machine-learning model development
 
-4\. Behavioural feature selection and preprocessing
+6. Model testing and evaluation
 
-5\. Machine-learning model development
+7. Analysis of detection performance
 
-6\. Model testing and evaluation
-
-7\. Analysis of detection performance
-
-8\. Discussion of findings and limitations
-
-
+8. Discussion of findings and limitations
 
 The methodology will focus on developing and evaluating a machine-learning-based behavioural detection approach rather than a complete commercial Endpoint Detection and Response (EDR) system.
 
+---
 
-
-\---
-
-
-
-\## 9. Development Model
+## 9. Development Model
 
 **Development Model:** Machine Learning Development Life Cycle (MLDLC) / Iterative CRISP-DM
 The system is developed following a 5-phase iterative engineering lifecycle:
@@ -324,5 +227,3 @@ This single command:
 3. Saves the trained models in `04_Source_Code/saved_models/`.
 4. Saves evaluation metrics to `06_Result_or_Expected_Outcome/model_evaluation_metrics.json`.
 5. Executes a live endpoint telemetry simulation demonstrating real-time threat classification and alert generation.
-
-
