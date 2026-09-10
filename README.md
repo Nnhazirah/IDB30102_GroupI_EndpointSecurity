@@ -73,15 +73,9 @@ To assess the effectiveness of the proposed behavioural detection method using s
 
 ---
 
-
-
-\## 7. Proposed Solution
-
-
+## 7. Proposed Solution
 
 The proposed solution is a behaviour-based ransomware detection approach for Windows endpoints.
-
-
 
 The approach will analyse multiple behavioural characteristics instead of relying on a single indicator. The selected characteristics may include:
 
