@@ -7,7 +7,7 @@ This directory documents the core research papers, scholarly literature, and emp
 ## 📚 Key Research Papers & Theoretical Foundations
 
 | Ref ID | Authors & Year | Paper Title / Focus | Key Contribution to Project |
-| :--- | :--- | :--- | :--- |
+|---|---|---|---|
 | **RP-01** | Ramamoorthi et al. (2026) | *Endpoint Telemetry and Sysmon Monitoring for Advanced Threat Detection* | Architectural foundation for Layer 1 data ingestion using Windows Sysmon event telemetry. |
 | **RP-02** | Abdelwahed et al. (2023) | *Dynamic Behavioural Analysis of Ransomware via System API Interception* | Identified critical API calls (e.g., `CryptEncrypt`, `NtWriteFile`, `MoveFileExW`) and process spawning patterns. |
 | **RP-03** | Lee & Lee (2022) | *Multi-Vector Ransomware Defense: Combining File I/O and Entropy Metrics* | Established the necessity of combining structural file metrics with process telemetry. |
