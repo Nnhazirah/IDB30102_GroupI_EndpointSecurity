@@ -1,6 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
-title IDB30102 Endpoint Security - Ransomware Detection System
+title IDB30102 Endpoint Security - Behavioural Detection System
 color 0b
 
 echo ===========================================================================
@@ -10,7 +10,6 @@ echo ===========================================================================
 echo.
 
 :: 1. Check Python installation
-echo [*] Checking Python environment...
 python --version >nul 2>&1
 if %errorlevel% neq 0 (
     color 0c
@@ -38,29 +37,41 @@ if exist "%SCRIPT_DIR%04_Source_Code" (
 
 cd /d "%PROJECT_ROOT%"
 
-:: 3. Install/verify dependencies
-echo [*] Checking and verifying Python dependencies...
-python -m pip install -r 04_Source_Code\requirements.txt
-if %errorlevel% neq 0 (
-    echo [WARNING] Some dependencies encountered an issue during verification.
-)
-echo.
+echo ---------------------------------------------------------------------------
+echo   Please select an operating mode:
+echo   [1] Launch Modern Desktop GUI Dashboard (Recommended)
+echo   [2] Run Terminal Evaluation and Training Pipeline (CLI)
+echo   [3] Install / Verify Dependencies (requirements.txt)
+echo   [4] Exit
+echo ---------------------------------------------------------------------------
+set /p MODE="Enter choice (default is 1): "
 
-:: 4. Run detection pipeline
-echo ===========================================================================
-echo   Launching Behavioural Detection and Model Training Pipeline...
-echo ===========================================================================
-echo.
+if "%MODE%"=="" set MODE=1
+if "%MODE%"=="1" goto launch_gui
+if "%MODE%"=="2" goto launch_cli
+if "%MODE%"=="3" goto install_deps
+if "%MODE%"=="4" exit /b 0
 
+:launch_gui
+echo.
+echo [*] Launching Desktop GUI Dashboard...
+cd /d "%PROJECT_ROOT%04_Source_Code"
+start "" python gui_app.py
+exit /b 0
+
+:launch_cli
+echo.
+echo [*] Running Terminal Detection Pipeline...
 cd /d "%PROJECT_ROOT%04_Source_Code"
 python run_pipeline.py
-
-echo.
-echo ===========================================================================
-echo   Execution finished. Models and evaluation results are saved in:
-echo   - Models:  %PROJECT_ROOT%04_Source_Code\saved_models\
-echo   - Dataset: %PROJECT_ROOT%05_Data_or_Sample_Input\
-echo   - Results: %PROJECT_ROOT%06_Result_or_Expected_Outcome\
-echo ===========================================================================
 echo.
 pause
+exit /b 0
+
+:install_deps
+echo.
+echo [*] Installing dependencies from requirements.txt...
+python -m pip install -r 04_Source_Code\requirements.txt
+echo.
+pause
+exit /b 0

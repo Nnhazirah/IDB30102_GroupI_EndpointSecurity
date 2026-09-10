@@ -1,328 +1,196 @@
-\# Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
-
-
-
-\## 1. Research Overview
-
-
-
-This research focuses on the behavioural detection of file-encrypting ransomware on Windows endpoints using machine learning. File-encrypting ransomware can perform malicious activities such as rapid file modification, file encryption, file renaming, extension changes, changes in file entropy, suspicious process activity and attempts to interfere with recovery mechanisms.
-
-
-
-The research investigates how behavioural characteristics such as file-system activity, file writing and renaming, entropy changes and process/API behaviour can be used as features for machine-learning-based ransomware detection.
-
-
-
-\---
-
-
-
-\## 2. Group Information
-
-
-
-\*\*Group:\*\* Group I – Endpoint Security
-
-
-
-\### Group Members
-
-
-
-| No. | Name | Student ID | Main Responsibility |
-
-|---|---|---|---|
-
-| 1 | \[NUR KHALISAH QISTINA BINTI MUHAMAD] | \[52215124789] | Chapter 1, README.md |
-
-| 2 | \[NURFILZAH ADIBAH BINTI ZAKARIA] | \[52215124782] | Chapter 2, Literature Review |
-
-| 3 | \[NIK NURHAZIRAH BINTI NIK HUSSAIN] | \[52215226033] | Chapter 3A, Methodology and Architecture |
-
-| 4 | \[NURIN IZZAH BINTI JUHARI] | \[52215124817] | Chapter 3B, Data, Evaluation and References |
-
-
-
-\---
-
-
-
-\## 3. Assigned Research Area
-
-
-
-\*\*Research Area:\*\* Endpoint Security
-
-
-
-\*\*Research Topic:\*\* Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
-
-
-
-The research focuses on detecting ransomware-related behaviour on Windows endpoints by analysing multiple behavioural characteristics and applying machine learning for classification.
-
-
-
-\---
-
-
-
-\## 4. Research Problem
-
-
-
-The research addresses two main problems.
-
-
-
-\### Problem 1: Detection Limitations
-
-
-
-Ransomware that encrypts files can show different behaviours, including rapid file alteration, file renaming, entropy changes and suspicious process activity. However, relying on a single behavioural indicator may not accurately distinguish ransomware from legitimate activity. For example, legitimate compressed or encrypted files may also have high entropy, while ransomware can modify its behaviour to avoid detection. New and modified ransomware may also be difficult for traditional signature-based detection to identify.
-
-
-
-Therefore, multiple behavioural indicators need to be combined with machine learning to improve ransomware detection and classification.
-
-
-
-\### Problem 2: Limited Generalisation to Realistic Windows Endpoint Environments
-
-
-
-Many machine-learning-based ransomware studies report high detection performance using controlled, synthetic or sandbox datasets. However, these environments may not fully represent realistic Windows endpoints containing legitimate applications, background processes and normal user activities.
-
-
-
-Detection performance may also differ when models trained on controlled datasets are applied to actual endpoint behaviour. Therefore, the proposed detection approach needs to be considered under more realistic Windows endpoint conditions and against different ransomware behaviours.
-
-
-
-\---
-
-
-
-\## 5. Research Aim
-
-
-
-To create and assess a machine-learning-based behavioural detection method for identifying file-encrypting ransomware on Windows endpoints while considering dataset quality, generalisation and realistic endpoint validation.
-
-
-
-\---
-
-
-
-\## 6. Research Objectives
-
-
-
-\### RO1
-
-
-
-To identify and analyse behavioural characteristics associated with file-encrypting ransomware on Windows endpoints.
-
-
-
-\### RO2
-
-
-
-To develop a machine-learning-based method using selected behavioural characteristics to distinguish ransomware-related and legitimate endpoint activities.
-
-
-
-\### RO3
-
-
-
-To assess the effectiveness of the proposed behavioural detection method using suitable classification and detection metrics.
-
-
-
-\---
-
-
-
-\## 7. Proposed Solution
-
-
-
-The proposed solution is a behaviour-based ransomware detection approach for Windows endpoints.
-
-
-
-The approach will analyse multiple behavioural characteristics instead of relying on a single indicator. The selected characteristics may include:
-
-
-
-\- File-system activity
-
-\- File-writing activity
-
-\- File renaming and extension changes
-
-\- File entropy changes
-
-\- Process behaviour
-
-\- API behaviour
-
-
-
-These behavioural features will be used in a supervised machine-learning approach to distinguish legitimate endpoint activities from ransomware-related activities.
-
-
-
-The proposed approach will consider machine-learning algorithms such as:
-
-
-
-\- Random Forest
-
-\- XGBoost
-
-\- Support Vector Machine (SVM)
-
-
-
-The final model selection will be based on the findings from the literature review, dataset suitability and evaluation results.
-
-
-
-\---
-
-
-
-\## 8. Research Methodology
-
-
-
-The research will follow a systematic research process consisting of:
-
-
-
-1\. Literature review and identification of research gaps
-
-2\. Identification of ransomware behavioural characteristics
-
-3\. Dataset selection and preparation
-
-4\. Behavioural feature selection and preprocessing
-
-5\. Machine-learning model development
-
-6\. Model testing and evaluation
-
-7\. Analysis of detection performance
-
-8\. Discussion of findings and limitations
-
-
-
-The methodology will focus on developing and evaluating a machine-learning-based behavioural detection approach rather than a complete commercial Endpoint Detection and Response (EDR) system.
-
-
-
-\---
-
-
-
-\## 9. Development Model
-
-**Development Model:** Machine Learning Development Life Cycle (MLDLC) / Iterative CRISP-DM
-The system is developed following a 5-phase iterative engineering lifecycle:
-1. **Endpoint Domain Understanding:** Formulating behavioural ransomware attack vectors and normal user profiles.
-2. **Data & Telemetry Ingestion:** Continuous Sysmon log monitoring and file-system event buffering.
-3. **Feature Engineering & Preprocessing:** 5-second temporal sliding windows, Shannon entropy calculation, delta tracking, and robust feature standardization.
-4. **Ensemble Model Training & Validation:** Training Random Forest, XGBoost, and SVM with 5-fold cross-validation and soft probability voting.
-5. **Real-Time Evaluation & Mitigation:** Threshold-based risk classification (`Benign`, `Suspicious`, `Ransomware`) and alerting.
+# Behavioural Detection of File-Encrypting Ransomware on Windows Endpoints using Machine Learning
+
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D6?logo=windows&logoColor=white)](#)
+[![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-3776AB?logo=python&logoColor=white)](#)
+[![Machine Learning](https://img.shields.io/badge/Models-RF%20%7C%20XGBoost%20%7C%20SVM%20%7C%20Ensemble-10B981)](#)
+[![UI](https://img.shields.io/badge/GUI-CustomTkinter%20Dark%20Dashboard-6366F1)](#)
 
 ---
 
-## 10. Research Scope
+## 1. Research Overview
 
-The research focuses on:
-- File-encrypting ransomware
-- Windows endpoint environments
-- Behaviour-based ransomware detection
-- Process/API behaviour
-- Entropy changes
-- File writing and renaming
-- File-system activity
-- Supervised machine learning
-- Random Forest
-- XGBoost
-- Support Vector Machine (SVM)
-- Classification of legitimate and ransomware-related activities
-- Detection performance evaluation
+This research focuses on the behavioural detection of file-encrypting ransomware on Windows endpoints through machine learning. Unlike traditional antivirus tools that rely primarily on static file hashes or known signatures, this approach observes dynamic system behaviour in real time. 
 
-The research focuses on ransomware detection and classification and does not aim to develop a complete commercial EDR solution.
+File-encrypting ransomware typically exhibits distinct behavioural patterns during an attack:
+* Rapid modification and overwriting of user files (high write velocity)
+* Sudden surges in file data randomness (Shannon entropy transition to ciphertext)
+* Bulk file renaming and extension appending (e.g., `.locked`, `.enc`)
+* System recovery sabotage, including volume shadow copy deletion (`vssadmin delete shadows /all /quiet`)
+* Process tampering and suspicious API invocations (`CryptEncrypt`, `MoveFileExW`)
+
+By capturing these dynamic indicators across sliding temporal windows, the system classifies endpoint behaviour into benign user activity, suspicious operations, or active ransomware outbreaks.
 
 ---
 
-## 11. Proposed System Architecture
+## 2. Group Information
 
-The proposed system follows a behavioural detection pipeline:
+**Course:** IDB30102 – Security Architecture and Endpoint Defense  
+**Group:** Group I – Endpoint Security  
+
+### Research Team
+
+| No. | Member Name | Student ID | Core Research Responsibility |
+| :---: | :--- | :---: | :--- |
+| 1 | **Nur Khalisah Qistina binti Muhamad** | 52215124789 | Chapter 1: Research Overview, Problem Statement & Objectives |
+| 2 | **Nurfilzah Adibah binti Zakaria** | 52215124782 | Chapter 2: Literature Review, Threat Vectors & Attack Analysis |
+| 3 | **Nik Nurhazirah binti Nik Hussain** | 52215226033 | Chapter 3A: Methodology, System Architecture & Sensor Design |
+| 4 | **Nurin Izzah binti Juhari** | 52215124817 | Chapter 3B: Dataset Synthesis, Model Evaluation & Documentation |
+
+---
+
+## 3. Assigned Research Area & Scope
+
+* **Research Domain:** Endpoint Security & Host-Based Intrusion Detection
+* **Focus Area:** Early-stage behavioural detection of file-encrypting ransomware on Windows operating systems
+* **Scope Boundaries:** The system focuses on classification, early alerting, and containment validation; it serves as a lightweight behavioral detection engine rather than an enterprise-wide commercial EDR deployment.
+
+---
+
+## 4. Problem Statement
+
+### Problem 1: Detection Limitations of Static Antivirus
+Modern ransomware operators constantly recompile, pack, and obfuscate their payloads to evade static hash lookups. By the time a signature is published to signature databases, endpoints are already encrypted. While behavioural detection offers resilience against zero-day variants, relying on a single indicator—such as entropy alone—produces false positives on legitimate compressed files (ZIP, DOCX, MP4). A multi-vector behavioural approach is necessary.
+
+### Problem 2: Limited Generalisation to Realistic Endpoint Environments
+Many machine learning studies evaluate detection performance exclusively within controlled sandboxes or synthetic datasets with artificial boundaries. In real enterprise environments, background Windows processes, software compilation, database writes, and user document archiving create noisy telemetry. Models must be trained and calibrated to differentiate benign high-entropy events from malicious cryptoviral bursts.
+
+---
+
+## 5. Research Objectives
+
+* **RO1 (Analysis):** Identify and characterize the runtime behavioural patterns of file-encrypting ransomware on Windows endpoints.
+* **RO2 (Development):** Design and implement a multi-model machine learning architecture combining Random Forest, XGBoost, and Support Vector Machines (SVM) with sliding-window feature extraction.
+* **RO3 (Evaluation):** Evaluate detection performance, cross-validation metrics, and false-positive resilience across benign workloads and simulated ransomware attacks.
+
+---
+
+## 6. System Architecture
+
+The detection framework is organized into four modular layers:
 
 ```text
-Windows Endpoint Activity
-          ↓
-Behavioural Data Collection (Sysmon & Entropy Monitor)
-          ↓
-Feature Extraction (5-Second Sliding Window)
-          ↓
-Data Preprocessing & Scaling (StandardScaler)
-          ↓
-Behavioural Feature Vector (8 Metrics)
-          ↓
-Machine Learning Multi-Model Ensemble (RF, XGBoost, SVM)
-          ↓
-Classification & Threat Taxonomy
-     ↙         ↓          ↘
- Benign    Suspicious   Ransomware
- (<0.40)  (0.40-0.79)    (≥0.80)
-     ↓         ↓          ↓
-  Permit     Audit      Alert & Mitigate
++-----------------------------------------------------------------------------------+
+|                           LAYER 1: DATA COLLECTION                                |
+|  - Windows Sysmon telemetry (Process creation, File operations, Registry)         |
+|  - Active Shannon entropy monitoring (0.0 to 8.0 bits scale)                      |
+|  - System recovery watchdog (vssadmin, bcdedit, wbadmin monitoring)               |
++-----------------------------------------------------------------------------------+
+                                         │
+                                         ▼
++-----------------------------------------------------------------------------------+
+|                          LAYER 2: FEATURE EXTRACTION                              |
+|  - 5-second sliding temporal aggregation window                                   |
+|  - Extracted features:                                                            |
+|    1. write_velocity (writes/s)           5. directory_coverage (count)           |
+|    2. entropy_current (bits)              6. api_call_frequency (calls/s)         |
+|    3. entropy_delta (Δ bits)              7. shadow_copy_attempt (0 or 1)         |
+|    4. rename_rate (renames/s)             8. file_count_modified (count)          |
++-----------------------------------------------------------------------------------+
+                                         │
+                                         ▼
++-----------------------------------------------------------------------------------+
+|                    LAYER 3: MACHINE LEARNING DETECTION ENGINE                     |
+|  - Feature standardization via StandardScaler                                     |
+|  - Multi-Model ensemble:                                                          |
+|    • Random Forest (100 estimators, balanced class weights)                       |
+|    • Extreme Gradient Boosting / XGBoost (depth 6, learning rate 0.1)             |
+|    • Support Vector Machine / SVM (RBF kernel, probability estimation)            |
+|  - Calibrated probability soft-voting mechanism                                   |
++-----------------------------------------------------------------------------------+
+                                         │
+                                         ▼
++-----------------------------------------------------------------------------------+
+|                           LAYER 4: OUTPUT & RESPONSE                              |
+|  - 3-Tier Threat Taxonomy:                                                        |
+|    • P(Ransomware) < 0.40  ==> [BENIGN]     (Permit operation)                    |
+|    • 0.40 ≤ P < 0.80       ==> [SUSPICIOUS] (Log for audit, notify administrator) |
+|    • P(Ransomware) ≥ 0.80  ==> [RANSOMWARE] (Trigger alert, process containment)  |
+|  - Real-time logging feed and modern CustomTkinter SOC GUI dashboard              |
++-----------------------------------------------------------------------------------+
 ```
 
 ---
 
-## 12. Repository Structure
+## 7. Repository Structure
 
-| Folder | Contents |
-| :--- | :--- |
-| [`01_Research_Papers/`](01_Research_Papers/) | Summary of foundational research papers and identified research gaps |
-| [`02_Literature_Review/`](02_Literature_Review/) | In-depth literature review, attack tactics, and algorithm comparative analysis |
-| [`03_Architecture_and_Flowchart/`](03_Architecture_and_Flowchart/) | System architecture diagrams, flowchart specifications, and design layers |
-| [`04_Source_Code/`](04_Source_Code/) | Production source code: monitoring, feature extraction, ML models, and pipeline runner |
-| [`05_Data_or_Sample_Input/`](05_Data_or_Sample_Input/) | Synthetic dataset (1,500 samples) and raw sample Sysmon endpoint logs |
-| [`06_Result_or_Expected_Outcome/`](06_Result_or_Expected_Outcome/) | Model evaluation metrics, literature benchmarks, and classification outputs |
-| [`07_References/`](07_References/) | Full academic bibliography in IEEE and APA formats |
+```text
+IDB30102_GroupI_EndpointSecurity/
+├── 01_Research_Papers/             # Academic papers, literature review sources & gap analysis
+├── 02_Literature_Review/           # Comprehensive literature synthesis and comparison matrix
+├── 03_Architecture_and_Flowchart/  # Architectural design diagrams and flowchart specifications
+├── 04_Source_Code/                 # Complete source code implementation
+│   ├── detection/                  # Machine learning detectors (RF, SVM, XGBoost, Ensemble)
+│   ├── monitoring/                 # Sysmon telemetry collector & Shannon entropy monitor
+│   ├── preprocessing/              # 5-second sliding window feature extractor
+│   ├── saved_models/               # Serialized trained model weights (.pkl)
+│   ├── gui_app.py                  # Modern CustomTkinter dark-mode desktop GUI application
+│   ├── run_pipeline.py             # CLI training, evaluation, and simulation pipeline
+│   └── requirements.txt            # Python dependencies with compatible version bounds
+├── 05_Data_or_Sample_Input/        # 1,500 labeled feature instances & sample Sysmon logs
+├── 06_Result_or_Expected_Outcome/  # Model evaluation metrics, confusion matrix & benchmark data
+├── 07_References/                  # Full bibliography in IEEE and APA formats
+├── run.bat                         # Interactive Windows launcher menu (GUI or CLI)
+├── run_gui.bat                     # Direct one-click GUI launcher
+└── README.md                       # Project documentation
+```
 
 ---
 
-## 13. Quick Start & Execution Guide
+## 8. Quick Start & Execution Guide
 
-### 1. Install Dependencies
-```bash
-cd 04_Source_Code
-pip install -r requirements.txt
+### Option A: Launch via One-Click Batch Launcher (Recommended for Windows)
+
+Double-click **`run.bat`** in the root directory to open the launcher menu:
+
+```text
+===========================================================================
+  IDB30102 GROUP I: ENDPOINT SECURITY
+  Behavioural Detection of File-Encrypting Ransomware using Machine Learning
+===========================================================================
+
+  Please select an operating mode:
+  [1] Launch Modern Desktop GUI Dashboard (Recommended)
+  [2] Run Terminal Evaluation and Training Pipeline (CLI)
+  [3] Install / Verify Dependencies (requirements.txt)
+  [4] Exit
 ```
 
-### 2. Run the End-to-End Pipeline
-```bash
-python run_pipeline.py
-```
-This single command:
-1. Generates/loads the 1,500-instance behavioural dataset (`05_Data_or_Sample_Input/synthetic_features_dataset.csv`).
-2. Trains and cross-validates Random Forest, SVM, XGBoost, and the Multi-Model Soft Voting Ensemble.
-3. Saves the trained models in `04_Source_Code/saved_models/`.
-4. Saves evaluation metrics to `06_Result_or_Expected_Outcome/model_evaluation_metrics.json`.
-5. Executes a live endpoint telemetry simulation demonstrating real-time threat classification and alert generation.
+Or double-click **`run_gui.bat`** to jump straight into the graphical dashboard.
 
+---
 
+### Option B: Manual Command Line Execution
+
+1. **Install Prerequisites:**
+   ```bash
+   pip install -r 04_Source_Code/requirements.txt
+   ```
+
+2. **Launch the Graphical User Interface (GUI):**
+   ```bash
+   python 04_Source_Code/gui_app.py
+   ```
+
+3. **Run Terminal Evaluation & Model Training Pipeline:**
+   ```bash
+   python 04_Source_Code/run_pipeline.py
+   ```
+
+---
+
+## 9. Experimental Results & Literature Baselines
+
+All models were evaluated on 1,500 labeled instances (900 benign endpoint records and 600 simulated ransomware bursts) using stratified 80/20 train-test splits and 5-fold cross-validation:
+
+| Classifier Model | Accuracy | Precision | Recall | F1-Score | Literature Baseline |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Random Forest** | 100.0% | 100.0% | 100.0% | 1.0000 | 98.1% (Elsersy et al., 2024) |
+| **Support Vector Machine (SVM)** | 100.0% | 100.0% | 100.0% | 1.0000 | 97.3% (Zirari et al., 2025) |
+| **XGBoost Classifier** | 100.0% | 100.0% | 100.0% | 1.0000 | 98.5% (Muppidi & Sureshkumar, 2025) |
+| **Multi-Model Soft Ensemble** | **100.0%** | **100.0%** | **100.0%** | **1.0000** | **98.9% (Surya & Sivakumar, 2024)** |
+
+---
+
+## 10. License & Academic Integrity
+
+This project is submitted as an academic group assignment for course **IDB30102**. All research papers, methodologies, and tools cited are referenced under standard academic guidelines in [`07_References/`](07_References/).

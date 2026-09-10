@@ -19,8 +19,9 @@ This directory contains the complete source code implementation for the **IDB301
 ├── preprocessing/
 │   └── feature_extraction.py     # 5-second sliding window behavioural feature extractor
 ├── saved_models/                 # Serialized trained model weights (.pkl)
-├── requirements.txt              # Required Python packages with compatible version bounds
-└── run_pipeline.py               # End-to-end training, evaluation, and live simulation pipeline
+├── gui_app.py                    # Modern CustomTkinter dark-mode desktop GUI dashboard
+├── run_pipeline.py               # End-to-end training, evaluation, and live simulation pipeline
+└── requirements.txt              # Required Python packages with compatible version bounds
 ```
 
 ---
@@ -37,23 +38,38 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Running the End-to-End Pipeline
+## 🖥️ Launching the Graphical User Interface (GUI)
 
-To generate the dataset, train all machine learning models (Random Forest, SVM, XGBoost, and the Multi-Model Ensemble), evaluate performance metrics, and simulate real-time endpoint threat classification, execute:
+The system includes a modern dark-mode Security Operations Center (SOC) dashboard built with CustomTkinter.
+
+```bash
+python gui_app.py
+```
+*(On Windows, you can also simply double-click **`run_gui.bat`** or choose Option `[1]` in **`run.bat`**).*
+
+### GUI Features:
+* **Live Telemetry Monitor:** Displays real-time cards for Write Velocity, File Entropy, Shadow Copy Tampering, and Threat Classification.
+* **Attack Simulation Controls:** Inject benign user activity, active ransomware bursts, or shadow copy deletion attacks to observe instant model classification.
+* **Shannon Entropy File/Folder Scanner:** Browse any local file or folder to analyze byte randomness with color-coded risk assessment.
+* **Model Benchmark & Retrain Engine:** Inspect accuracy, precision, recall, and F1 across all four models, and trigger real-time model retraining on the fly.
+* **Interactive Terminal Log:** Color-coded event telemetry feed with auto-scrolling and log clearing.
+
+---
+
+## 🚀 Running the Command Line Pipeline (CLI)
+
+To run headless dataset generation, model training, evaluation, and terminal simulation:
 
 ```bash
 python run_pipeline.py
 ```
 
-### What this script does:
-1. **Generates / Ingests Dataset:** Creates `05_Data_or_Sample_Input/synthetic_features_dataset.csv` with 1,500 labeled benign and ransomware behavioural samples.
-2. **Trains Classifiers:** Fits each model on scaled features with 80/20 train-test split and 5-fold cross-validation.
-3. **Persists Weights:** Serializes trained models and standard scalers to `04_Source_Code/saved_models/`.
+### What the CLI pipeline does:
+1. **Generates / Ingests Dataset:** Creates `05_Data_or_Sample_Input/synthetic_features_dataset.csv` with 1,500 labeled samples.
+2. **Trains Classifiers:** Fits each model on standardized features with 80/20 train-test split and 5-fold cross-validation.
+3. **Persists Weights:** Serializes trained models and scalers to `04_Source_Code/saved_models/`.
 4. **Logs Metrics:** Outputs accuracy, precision, recall, and F1-score to `06_Result_or_Expected_Outcome/model_evaluation_metrics.json`.
-5. **Live Simulation:** Streams realistic Sysmon events through the 5-second sliding window feature extractor, displaying real-time alert classifications:
-   - `[BENIGN]` (Risk < 0.40)
-   - `[SUSPICIOUS]` (0.40 ≤ Risk < 0.80)
-   - `[RANSOMWARE]` (Risk ≥ 0.80)
+5. **Live Simulation:** Streams realistic Sysmon events through the 5-second sliding window feature extractor and outputs real-time threat alerts.
 
 ---
 
