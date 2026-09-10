@@ -9,16 +9,16 @@
 
 ## 1. Research Overview
 
-This research focuses on the behavioural detection of file-encrypting ransomware on Windows endpoints through machine learning. Unlike traditional antivirus tools that rely primarily on static file hashes or known signatures, this approach observes dynamic system behaviour in real time. 
+This research focuses on the behavioural detection of file-encrypting ransomware on Windows endpoints through machine learning. Traditional antivirus tools rely heavily on static file signatures and known hashes, making them inherently vulnerable to zero-day, packed, or polymorphic ransomware families. 
 
-File-encrypting ransomware typically exhibits distinct behavioural patterns during an attack:
+File-encrypting ransomware exhibits distinct operational characteristics during execution:
 * Rapid modification and overwriting of user files (high write velocity)
-* Sudden surges in file data randomness (Shannon entropy transition to ciphertext)
-* Bulk file renaming and extension appending (e.g., `.locked`, `.enc`)
+* Sudden surges in data randomness (Shannon entropy transition from plaintext to ciphertext)
+* Bulk file renaming and extension appending (e.g., `.locked`, `.enc`, `.wnry`)
 * System recovery sabotage, including volume shadow copy deletion (`vssadmin delete shadows /all /quiet`)
-* Process tampering and suspicious API invocations (`CryptEncrypt`, `MoveFileExW`)
+* Process tampering and suspicious crypto API invocations (`CryptEncrypt`, `MoveFileExW`)
 
-By capturing these dynamic indicators across sliding temporal windows, the system classifies endpoint behaviour into benign user activity, suspicious operations, or active ransomware outbreaks.
+By capturing these dynamic indicators across sliding temporal windows, the proposed framework classifies endpoint activity into benign operations, suspicious anomalies, or active ransomware attacks.
 
 ---
 
@@ -42,17 +42,17 @@ By capturing these dynamic indicators across sliding temporal windows, the syste
 
 * **Research Domain:** Endpoint Security & Host-Based Intrusion Detection
 * **Focus Area:** Early-stage behavioural detection of file-encrypting ransomware on Windows operating systems
-* **Scope Boundaries:** The system focuses on classification, early alerting, and containment validation; it serves as a lightweight behavioral detection engine rather than an enterprise-wide commercial EDR deployment.
+* **Scope Boundaries:** The system focuses on feature extraction, multi-model classification, and early containment validation; it serves as a lightweight behavioural detection engine rather than a commercial Endpoint Detection and Response (EDR) suite.
 
 ---
 
 ## 4. Problem Statement
 
 ### Problem 1: Detection Limitations of Static Antivirus
-Modern ransomware operators constantly recompile, pack, and obfuscate their payloads to evade static hash lookups. By the time a signature is published to signature databases, endpoints are already encrypted. While behavioural detection offers resilience against zero-day variants, relying on a single indicator—such as entropy alone—produces false positives on legitimate compressed files (ZIP, DOCX, MP4). A multi-vector behavioural approach is necessary.
+Modern ransomware operators constantly mutate, pack, and obfuscate payloads to evade static hash databases. By the time a signature is distributed, the victim's data is already encrypted. While behavioural heuristics offer protection against novel strains, relying on a single indicator—such as file entropy alone—causes false positives on legitimate compressed files (ZIP, DOCX, MP4). A multi-vector approach is necessary.
 
 ### Problem 2: Limited Generalisation to Realistic Endpoint Environments
-Many machine learning studies evaluate detection performance exclusively within controlled sandboxes or synthetic datasets with artificial boundaries. In real enterprise environments, background Windows processes, software compilation, database writes, and user document archiving create noisy telemetry. Models must be trained and calibrated to differentiate benign high-entropy events from malicious cryptoviral bursts.
+Many machine learning studies evaluate models strictly in controlled sandbox environments with synthetic conditions. In real enterprise environments, background system services, software compiling, database updates, and user document archiving generate high volumes of noisy telemetry. Machine learning models must be resilient against benign high-entropy events while maintaining sub-second detection latency.
 
 ---
 
@@ -64,9 +64,28 @@ Many machine learning studies evaluate detection performance exclusively within 
 
 ---
 
-## 6. System Architecture
+## 6. Proposed Solution
 
-The detection framework is organized into four modular layers:
+The system introduces a 4-tier behavioural detection engine:
+* **Multi-Vector Telemetry:** Tracks write velocity, Shannon entropy deltas, rename frequency, directory coverage, API rates, and recovery tampering hooks.
+* **Temporal Sliding Window:** Uses a 5-second rolling window to capture burst behaviour without accumulating memory overhead.
+* **Standardized Ensemble Detection:** Scales features with `StandardScaler` and applies probability-weighted soft voting across Random Forest, XGBoost, and Support Vector Machines.
+* **Actionable Threat Taxonomy:** Maps threats into three operational tiers: `[BENIGN]` ($<0.40$), `[SUSPICIOUS]` ($0.40-0.79$), and `[RANSOMWARE]` ($\ge 0.80$).
+
+---
+
+## 7. Development Model & Research Methodology
+
+**Development Model:** Machine Learning Development Life Cycle (MLDLC) / Iterative CRISP-DM
+1. **Endpoint Domain Understanding:** Formulating ransomware attack vectors and normal user activity profiles.
+2. **Data & Telemetry Ingestion:** Continuous Sysmon log monitoring and file-system event buffering.
+3. **Feature Engineering & Preprocessing:** 5-second temporal sliding windows, Shannon entropy calculation, delta tracking, and robust feature standardization.
+4. **Ensemble Model Training & Validation:** Training Random Forest, XGBoost, and SVM with 5-fold cross-validation and soft probability voting.
+5. **Real-Time Evaluation & Mitigation:** Threshold-based risk classification and automated alerting on desktop dashboard.
+
+---
+
+## 8. System Architecture
 
 ```text
 +-----------------------------------------------------------------------------------+
@@ -111,7 +130,7 @@ The detection framework is organized into four modular layers:
 
 ---
 
-## 7. Repository Structure
+## 9. Repository Structure
 
 ```text
 IDB30102_GroupI_EndpointSecurity/
@@ -123,8 +142,9 @@ IDB30102_GroupI_EndpointSecurity/
 │   ├── monitoring/                 # Sysmon telemetry collector & Shannon entropy monitor
 │   ├── preprocessing/              # 5-second sliding window feature extractor
 │   ├── saved_models/               # Serialized trained model weights (.pkl)
-│   ├── gui_app.py                  # Modern CustomTkinter dark-mode desktop GUI application
+│   ├── gui_app.py                  # Modern CustomTkinter dark-mode desktop GUI dashboard
 │   ├── run_pipeline.py             # CLI training, evaluation, and simulation pipeline
+│   ├── run.bat                     # Launcher inside source directory
 │   └── requirements.txt            # Python dependencies with compatible version bounds
 ├── 05_Data_or_Sample_Input/        # 1,500 labeled feature instances & sample Sysmon logs
 ├── 06_Result_or_Expected_Outcome/  # Model evaluation metrics, confusion matrix & benchmark data
@@ -136,11 +156,11 @@ IDB30102_GroupI_EndpointSecurity/
 
 ---
 
-## 8. Quick Start & Execution Guide
+## 10. Quick Start & Execution Guide
 
-### Option A: Launch via One-Click Batch Launcher (Recommended for Windows)
+### Option A: Launch via Batch File (Recommended on Windows)
 
-Double-click **`run.bat`** in the root directory to open the launcher menu:
+Double-click **`run.bat`** in the root directory to open the interactive menu:
 
 ```text
 ===========================================================================
@@ -155,7 +175,7 @@ Double-click **`run.bat`** in the root directory to open the launcher menu:
   [4] Exit
 ```
 
-Or double-click **`run_gui.bat`** to jump straight into the graphical dashboard.
+Or simply double-click **`run_gui.bat`** to start the desktop dashboard directly.
 
 ---
 
@@ -166,19 +186,19 @@ Or double-click **`run_gui.bat`** to jump straight into the graphical dashboard.
    pip install -r 04_Source_Code/requirements.txt
    ```
 
-2. **Launch the Graphical User Interface (GUI):**
+2. **Launch the Desktop GUI:**
    ```bash
    python 04_Source_Code/gui_app.py
    ```
 
-3. **Run Terminal Evaluation & Model Training Pipeline:**
+3. **Run the Terminal Evaluation Pipeline:**
    ```bash
    python 04_Source_Code/run_pipeline.py
    ```
 
 ---
 
-## 9. Experimental Results & Literature Baselines
+## 11. Experimental Results & Literature Baselines
 
 All models were evaluated on 1,500 labeled instances (900 benign endpoint records and 600 simulated ransomware bursts) using stratified 80/20 train-test splits and 5-fold cross-validation:
 
@@ -191,6 +211,6 @@ All models were evaluated on 1,500 labeled instances (900 benign endpoint record
 
 ---
 
-## 10. License & Academic Integrity
+## 12. License & Academic Integrity
 
 This project is submitted as an academic group assignment for course **IDB30102**. All research papers, methodologies, and tools cited are referenced under standard academic guidelines in [`07_References/`](07_References/).
